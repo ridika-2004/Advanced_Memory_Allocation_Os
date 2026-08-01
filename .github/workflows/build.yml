@@ -23,10 +23,6 @@ jobs:
             python3 \
             perl
 
-      - name: Build
-        run: |
-          make
-
-      - name: Run Tests
+      - name: Build and Test
         run: |
           timeout 20s make TEST=1 || true
