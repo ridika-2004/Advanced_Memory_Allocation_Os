@@ -29,32 +29,29 @@ static void kern_main(uintptr_t mbi_addr)
     pmem_init((unsigned int)mbi_addr);
     test_MATInit();
     test_MATOp();
-
+    
     /* 2. Container Tests */
     container_init((unsigned int)mbi_addr);
     test_MContainer();
 
-    /* 3. Virtual Memory Tests */
-    paging_init(mbi_addr);
+    /* 3. Virtual Memory & Superpage Tests (FIX STARTS HERE) */
+    // You MUST call paging_init to enable the 4MB PSE hardware bit
+    paging_init(mbi_addr); 
 
     dprintf("Testing the MPTComm layer (Superpage & Heap foundation)...\n");
-
-    if (test_MPTComm() == 0)
+    // This will now execute MPTComm_test_own
+    if (test_MPTComm() == 0) {
         dprintf("MPTComm tests passed!\n");
+    }
 
-    dprintf("\nAll tests completed successfully.\n");
-
-    /* Exit QEMU instead of entering the monitor */
-    outw(0x604, 0x2000);
-
-    /* Safety: should never reach here */
-    while (1)
-        ;
-
+    // THIS MUST BE THE VERY LAST LINE OF THE TEST BLOCK
+    dprintf("\nTest complete. Please Use Ctrl-a x to exit qemu.\n");
 #else
     paging_init(mbi_addr);
     monitor(NULL);
 #endif
+
+    monitor(NULL);
 }
 
 void kern_init(uintptr_t mbi_addr)
