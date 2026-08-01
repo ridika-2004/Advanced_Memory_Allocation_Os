@@ -5,6 +5,8 @@
 #include <lib/x86.h>
 #include <vmm/MPTNew/export.h> 
 #include <pmm/MContainer/export.h>
+
+#define NUM_IDS 64
 int MPTComm_test1()
 {
     unsigned int i;

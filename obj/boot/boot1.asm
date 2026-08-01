@@ -5793,30 +5793,21 @@ Disassembly of section .debug_str:
   24:	65 73 6b             	gs jae 92 <PR_BOOTABLE+0x12>
   27:	74 6f                	je     98 <PR_BOOTABLE+0x18>
   29:	70 2f                	jo     5a <PROT_MODE_DSEG+0x4a>
-  2b:	4f                   	dec    %edi
-  2c:	53                   	push   %ebx
-  2d:	5f                   	pop    %edi
-  2e:	4c                   	dec    %esp
-  2f:	61                   	popa
-  30:	62 2f                	bound  %ebp,(%edi)
-  32:	41                   	inc    %ecx
-  33:	64 76 61             	fs jbe 97 <PR_BOOTABLE+0x17>
-  36:	6e                   	outsb  %ds:(%esi),(%dx)
-  37:	63 65 64             	arpl   %esp,0x64(%ebp)
-  3a:	5f                   	pop    %edi
-  3b:	4d                   	dec    %ebp
-  3c:	65 6d                	gs insl (%dx),%es:(%edi)
+  2b:	41                   	inc    %ecx
+  2c:	64 76 61             	fs jbe 90 <PR_BOOTABLE+0x10>
+  2f:	6e                   	outsb  %ds:(%esi),(%dx)
+  30:	63 65 64             	arpl   %esp,0x64(%ebp)
+  33:	20 4d 65             	and    %cl,0x65(%ebp)
+  36:	6d                   	insl   (%dx),%es:(%edi)
+  37:	6f                   	outsl  %ds:(%esi),(%dx)
+  38:	72 79                	jb     b3 <PR_BOOTABLE+0x33>
+  3a:	20 41 6c             	and    %al,0x6c(%ecx)
+  3d:	6c                   	insb   (%dx),%es:(%edi)
   3e:	6f                   	outsl  %ds:(%esi),(%dx)
-  3f:	72 79                	jb     ba <PR_BOOTABLE+0x3a>
-  41:	5f                   	pop    %edi
-  42:	41                   	inc    %ecx
-  43:	6c                   	insb   (%dx),%es:(%edi)
-  44:	6c                   	insb   (%dx),%es:(%edi)
-  45:	6f                   	outsl  %ds:(%esi),(%dx)
-  46:	63 61 74             	arpl   %esp,0x74(%ecx)
-  49:	69 6f 6e 5f 4f 73 00 	imul   $0x734f5f,0x6e(%edi),%ebp
-  50:	47                   	inc    %edi
-  51:	4e                   	dec    %esi
+  3f:	63 61 74             	arpl   %esp,0x74(%ecx)
+  42:	69 6f 6e 2f 6d 63 65 	imul   $0x65636d2f,0x6e(%edi),%ebp
+  49:	72 74                	jb     bf <PR_BOOTABLE+0x3f>
+  4b:	69 6b 6f 73 00 47 4e 	imul   $0x4e470073,0x6f(%ebx),%ebp
   52:	55                   	push   %ebp
   53:	20 41 53             	and    %al,0x53(%ecx)
   56:	20 32                	and    %dh,(%edx)
@@ -6322,29 +6313,22 @@ Disassembly of section .debug_line_str:
   11:	65 73 6b             	gs jae 7f <PROT_MODE_DSEG+0x6f>
   14:	74 6f                	je     85 <PR_BOOTABLE+0x5>
   16:	70 2f                	jo     47 <PROT_MODE_DSEG+0x37>
-  18:	4f                   	dec    %edi
-  19:	53                   	push   %ebx
-  1a:	5f                   	pop    %edi
-  1b:	4c                   	dec    %esp
-  1c:	61                   	popa
-  1d:	62 2f                	bound  %ebp,(%edi)
-  1f:	41                   	inc    %ecx
-  20:	64 76 61             	fs jbe 84 <PR_BOOTABLE+0x4>
-  23:	6e                   	outsb  %ds:(%esi),(%dx)
-  24:	63 65 64             	arpl   %esp,0x64(%ebp)
-  27:	5f                   	pop    %edi
-  28:	4d                   	dec    %ebp
-  29:	65 6d                	gs insl (%dx),%es:(%edi)
+  18:	41                   	inc    %ecx
+  19:	64 76 61             	fs jbe 7d <PROT_MODE_DSEG+0x6d>
+  1c:	6e                   	outsb  %ds:(%esi),(%dx)
+  1d:	63 65 64             	arpl   %esp,0x64(%ebp)
+  20:	20 4d 65             	and    %cl,0x65(%ebp)
+  23:	6d                   	insl   (%dx),%es:(%edi)
+  24:	6f                   	outsl  %ds:(%esi),(%dx)
+  25:	72 79                	jb     a0 <PR_BOOTABLE+0x20>
+  27:	20 41 6c             	and    %al,0x6c(%ecx)
+  2a:	6c                   	insb   (%dx),%es:(%edi)
   2b:	6f                   	outsl  %ds:(%esi),(%dx)
-  2c:	72 79                	jb     a7 <PR_BOOTABLE+0x27>
-  2e:	5f                   	pop    %edi
-  2f:	41                   	inc    %ecx
-  30:	6c                   	insb   (%dx),%es:(%edi)
-  31:	6c                   	insb   (%dx),%es:(%edi)
-  32:	6f                   	outsl  %ds:(%esi),(%dx)
-  33:	63 61 74             	arpl   %esp,0x74(%ecx)
-  36:	69 6f 6e 5f 4f 73 00 	imul   $0x734f5f,0x6e(%edi),%ebp
-  3d:	62 6f 6f             	bound  %ebp,0x6f(%edi)
+  2c:	63 61 74             	arpl   %esp,0x74(%ecx)
+  2f:	69 6f 6e 2f 6d 63 65 	imul   $0x65636d2f,0x6e(%edi),%ebp
+  36:	72 74                	jb     ac <PR_BOOTABLE+0x2c>
+  38:	69 6b 6f 73 00 62 6f 	imul   $0x6f620073,0x6f(%ebx),%ebp
+  3f:	6f                   	outsl  %ds:(%esi),(%dx)
   40:	74 2f                	je     71 <PROT_MODE_DSEG+0x61>
   42:	62 6f 6f             	bound  %ebp,0x6f(%edi)
   45:	74 31                	je     78 <PROT_MODE_DSEG+0x68>

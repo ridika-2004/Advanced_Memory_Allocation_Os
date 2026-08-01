@@ -1,6 +1,7 @@
 #include <lib/x86.h>
 #include <lib/debug.h>
 #include "export.h"
+#define NUM_IDS 64
 
 extern char *PDirPool[NUM_IDS][1024];
 extern unsigned int IDPTbl[1024][1024];

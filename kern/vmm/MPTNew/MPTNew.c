@@ -11,8 +11,6 @@ unsigned int alloc_page (unsigned int proc_index, unsigned int vaddr, unsigned i
     return ptbl;
 }
 
-
-
 unsigned int alloc_mem_quota (unsigned int id, unsigned int quota)
 {
     unsigned int child;

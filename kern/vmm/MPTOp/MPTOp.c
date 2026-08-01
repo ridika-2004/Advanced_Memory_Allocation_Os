@@ -98,4 +98,3 @@ void idptbl_init(unsigned int mbi_adr)
         }
     }
 }
-

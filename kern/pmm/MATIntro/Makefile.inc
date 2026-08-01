@@ -1,4 +1,4 @@
-# -*-Makefile-*- 
+# -*-Makefile-*-
 
 OBJDIRS += $(KERN_OBJDIR)/pmm/MATIntro
 

@@ -88,11 +88,7 @@ unsigned int container_alloc(unsigned int id)
     return 0;
 }
 
-/**
- * NEW: Container-aware Superpage Allocation
- * Checks if 1024 pages are available in the quota before 
- * calling the buddy allocator's superpage function.
- */
+
 unsigned int container_alloc_superpage(unsigned int id)
 {
     // DEBUG: See what's happening
@@ -114,15 +110,10 @@ unsigned int container_alloc_superpage(unsigned int id)
     return 0;
 }
 
-/**
- * UPDATED: Container Free
- * Now checks the Allocation Table (AT) to see if the page being freed 
- * is a 4KB page or the start of a 4MB superpage to adjust usage correctly.
- */
+
 void container_free(unsigned int id, unsigned int page_index)
 {
-    // Check the order of the page in the Allocation Table metadata
-    // This assumes your AT structure has an 'order' field from the buddy system
+ 
     unsigned int order = at_get_order(page_index);
     
     if (order == SUPERPAGE_ORDER) {

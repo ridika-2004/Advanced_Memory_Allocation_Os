@@ -51,32 +51,6 @@ unsigned int alloc_ptbl(unsigned int proc_index, unsigned int vadr)
 }
 
 /**
- * NEW: Superpage (4MB) Allocation
- * This is what your MPTComm_test_own is looking for!
- */
-unsigned int alloc_superpage(unsigned int proc_index, unsigned int vadr)
-{
-    unsigned int pindex = container_alloc_superpage(proc_index);
-    if (pindex == 0) return 0;
-
-    // Calculate the PDE index (top 10 bits of the virtual address)
-    unsigned int pde_index = vadr >> 22;
-
-    // Construct the FULL 32-bit entry
-    // (pindex << 12) provides the base address
-    // 0x87 provides Present (1), Write (2), User (4), and Page Size (128)
-    unsigned int pde_entry = (pindex << 12) | 0x87; 
-
-    // Use our new raw setter
-    set_pde(proc_index, pde_index, pde_entry);
-
-    dprintf("VMM: Superpage allocated for proc %u at PDE %u (Value: 0x%08x)\n", 
-            proc_index, pde_index, pde_entry);
-
-    return pindex;
-}
-
-/**
  * Updated free_ptbl: Handles both 4KB Page Tables and 4MB Superpages.
  */
 void free_ptbl(unsigned int proc_index, unsigned int vadr)
@@ -106,3 +80,34 @@ void free_ptbl(unsigned int proc_index, unsigned int vadr)
   rmv_pdir_entry_by_va(proc_index, vadr);
   container_free(proc_index, page_index);
 }
+
+
+
+/**
+ * NEW: Superpage (4MB) Allocation
+ * This is what your MPTComm_test_own is looking for!
+ */
+
+unsigned int alloc_superpage(unsigned int proc_index, unsigned int vadr)
+{
+    unsigned int pindex = container_alloc_superpage(proc_index);
+    if (pindex == 0) return 0;
+
+    // Calculate the PDE index (top 10 bits of the virtual address)
+    unsigned int pde_index = vadr >> 22;
+
+    // Construct the FULL 32-bit entry
+    // (pindex << 12) provides the base address
+    // 0x87 provides Present (1), Write (2), User (4), and Page Size (128)
+    unsigned int pde_entry = (pindex << 12) | 0x87; 
+
+    // Use our new raw setter
+    set_pde(proc_index, pde_index, pde_entry);
+
+    dprintf("VMM: Superpage allocated for proc %u at PDE %u (Value: 0x%08x)\n", 
+            proc_index, pde_index, pde_entry);
+
+    return pindex;
+}
+
+
