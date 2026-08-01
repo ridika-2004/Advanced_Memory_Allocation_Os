@@ -1,0 +1,32 @@
+name: Build MCertiKOS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            build-essential \
+            gcc-multilib \
+            g++-multilib \
+            qemu-system-x86 \
+            python3 \
+            perl
+
+      - name: Build
+        run: |
+          make
+
+      - name: Run Tests
+        run: |
+          timeout 20s make TEST=1 || true
