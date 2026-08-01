@@ -25,4 +25,4 @@ jobs:
 
       - name: Build and Test
         run: |
-          timeout 20s make TEST=1 || true
+          timeout 20s make TEST=1
