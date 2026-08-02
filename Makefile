@@ -98,10 +98,10 @@ QEMUOPTS_BIOS	:= -L $(UTILSDIR)/qemu/
 all: boot kern user link
 	@./make_image.py
 ifdef TEST
-    @echo "***"
-    @echo "*** Use Ctrl-a x to exit qemu"
-    @echo "***"
-    $(V)$(QEMU) -nographic $(QEMUOPTS)
+	@echo "***"
+	@echo "*** Use Ctrl-a x to exit qemu"
+	@echo "***"
+	$(V)$(QEMU) -nographic $(QEMUOPTS)
 endif
 	@echo "All targets are done."
 
