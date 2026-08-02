@@ -99,9 +99,12 @@ all: boot kern user link
 	@./make_image.py
 ifdef TEST
 	@echo "***"
-	@echo "*** Use Ctrl-a x to exit qemu"
+	@echo "*** Running automated tests..."
 	@echo "***"
-	$(V)$(QEMU) -nographic $(QEMUOPTS)
+
+	-$(V)timeout 20s $(QEMU) -nographic $(QEMUOPTS)
+
+	@echo "Tests finished."
 endif
 	@echo "All targets are done."
 
