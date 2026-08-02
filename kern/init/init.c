@@ -46,6 +46,8 @@ static void kern_main(uintptr_t mbi_addr)
 
     // THIS MUST BE THE VERY LAST LINE OF THE TEST BLOCK
     dprintf("\nTest complete. Please Use Ctrl-a x to exit qemu.\n");
+    outw(0x604, 0x2000);   // Tell QEMU to power off
+    while(1);
 #else
     paging_init(mbi_addr);
     monitor(NULL);
