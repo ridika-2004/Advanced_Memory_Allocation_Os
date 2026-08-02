@@ -23,7 +23,5 @@ jobs:
             python3 \
             perl
 
-      - name: Build and Test
-        run: |
-          timeout 20s make TEST=1
-          test $? -eq 124 -o $? -eq 0
+      - name: Run Tests
+        run: make TEST=1
