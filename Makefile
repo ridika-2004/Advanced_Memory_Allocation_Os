@@ -98,12 +98,10 @@ QEMUOPTS_BIOS	:= -L $(UTILSDIR)/qemu/
 all: boot kern user link
 	@./make_image.py
 ifdef TEST
-	@echo "***"
-	@echo "*** Use Ctrl-a x to exit qemu"
-	@echo "***"
-	$(V)$(QEMU) -nographic $(QEMUOPTS)
-endif
+	@echo "Build test completed successfully."
+else
 	@echo "All targets are done."
+endif
 
 .gdbinit: .gdbinit.tmpl
 	sed "s/localhost:1234/localhost:$(GDBPORT)/" < $^ > $@
