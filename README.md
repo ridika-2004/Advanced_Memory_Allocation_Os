@@ -4,6 +4,8 @@
 
 **An extension of the mCertiKOS operating system implementing buddy allocation, contiguous memory allocation, 4MB superpages, and dynamic heap management for efficient memory utilization.**
 
+> <img src="https://github.com/ridika-2004/Advanced_Memory_Allocation_Os/blob/master/mcertikos.gif" />
+
 </div>
 
 ## Overview
