@@ -1,170 +1,133 @@
 <div align="center">
-  <h1>Advanced Memory Allocation System</h1>
+
+# Advanced Memory Allocation System
+
+**An extension of the mCertiKOS operating system implementing buddy allocation, contiguous memory allocation, 4MB superpages, and dynamic heap management for efficient memory utilization.**
+
 </div>
 
-<div align="center">
-  <p>
-    This project extends the memory management system of <b>mCertiKOS</b> by introducing support for Contiguous and Superpage-Aware Memory Management with <b>buddy allocation</b>, <b>4MB superpages</b>, and dynamic heap management. The goal is to improve performance and efficiency by reducing fragmentation, minimizing TLB misses, and enabling large memory allocations.
-  </p>
-</div>
+## Overview
 
-<div>
-  <h2>Features</h2>
-  <img width="250" align="right" src="https://github.com/user-attachments/assets/ccd521d0-6e04-4518-9d74-d3f85cdacfe7" />
-  <div align="left">
-<ul>
-  <li>Buddy Allocation System (2<sup>n</sup> blocks)</li>
-  <li>Free List-based memory management</li>
-  <li>Superpage allocation &amp; deallocation (4MB)</li>
-  <li>Memory zone division to reduce fragmentation</li>
-  <li>Dynamic heap management using <code>brk()</code> system call</li>
-  <li>Container-based memory usage tracking</li>
-  <li>Efficient Allocation Table (AT[]) for metadata</li>
-</ul>
-  </div>
-</div>
+This project extends the memory management subsystem of **mCertiKOS** by implementing an advanced memory allocation framework that supports contiguous allocation, buddy allocation, superpage management, and dynamic heap expansion.
 
+The implementation focuses on reducing memory fragmentation, improving allocation efficiency, minimizing Translation Lookaside Buffer (TLB) misses, and supporting larger memory allocations through **4MB superpages**.
 
-<h2>Key Concepts Used</h2>
-<img width="250" align="right" alt="ai_shigoto" src="https://github.com/user-attachments/assets/22755402-ab0b-444d-bb47-c700c67d0afb" />
-<table border="1" cellspacing="0" cellpadding="8">
-  <tr>
-    <th>#</th>
-    <th>Concept</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>Paging &amp; Virtual Memory</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Page Tables &amp; Page Directories</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Translation Lookaside Buffer (TLB)</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Page Size Extension (PSE)</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>System Calls (<code>brk</code>)</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Contiguous Memory Allocation</td>
-  </tr>
-</table>
+## Features
+> <img align="right" width="400" alt="Slide-page-4" src="https://github.com/user-attachments/assets/8b2a2060-1c19-4f24-84d1-de12d5e52781" />
+
+- Buddy Allocation using power-of-two (`2ⁿ`) block sizes
+- Contiguous physical memory allocation
+- 4MB Superpage allocation and deallocation
+- Memory zone partitioning to reduce fragmentation
+- Dynamic heap management through the `brk()` system call
+- Container-based memory accounting and quota tracking
+- Efficient Allocation Table (`AT[]`) metadata management
+- Automated kernel test suite
+
+# Key Concepts
+
+| # | Concept |
+|---|---------|
+| 1 | Paging & Virtual Memory |
+| 2 | Page Tables & Page Directories |
+| 3 | Translation Lookaside Buffer (TLB) |
+| 4 | Page Size Extension (PSE) |
+| 5 | `brk()` System Call |
+| 6 | Buddy Memory Allocation |
+| 7 | Contiguous Physical Memory Allocation |
+| 8 | Superpage Memory Management |
+| 9 | Dynamic Heap Management |
+
+# Technologies & Tools
+
+| Category | Details |
+|----------|---------|
+| **Programming Language** | C |
+| **Operating System Framework** | mCertiKOS |
+| **CPU Architecture** | x86 |
+| **Development Environment** | VMware |
+| **Editor** | Visual Studio Code |
+| **Compiler** | GCC |
+| **Build System** | Makefile |
+| **Emulator** | QEMU |
+
+# System Flow
+
+> <img alt="Slide-page-2" src="https://github.com/user-attachments/assets/342aabb6-8694-4477-8c9f-095856e718ed" />
 
 
-<div>
-  <h2 align="right">Technologies &amp; Tools</h2>
-  <img width="300" align="left" alt="computer11_sleep" src="https://github.com/user-attachments/assets/dfb8e1c3-38fe-455d-ac46-71789ddad1f6" />
+The memory management system is organized into multiple layers that cooperate to manage physical and virtual memory efficiently. It includes buddy allocation for contiguous memory, superpage support for large mappings, container-based quota management, and dynamic heap expansion.
 
-<div align="right">
-  <table border="1" cellspacing="0" cellpadding="8">
-    <tr>
-      <th>Category</th>
-      <th>Details</th>
-    </tr>
-    <tr>
-      <td><b>Language</b></td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <td><b>OS Framework</b></td>
-      <td>mCertiKOS</td>
-    </tr>
-    <tr>
-      <td><b>Architecture</b></td>
-      <td>x86</td>
-    </tr>
-    <tr>
-      <td><b>Development Tools</b></td>
-      <td>
-        VMware<br>
-        VS Code<br>
-        GCC Compiler<br>
-        Makefile<br>
-        QEMU Emulator
-      </td>
-    </tr>
-  </table>
-</div>
-</div>
+# Repository Structure
 
+```text
+.
+├── boot/
+├── kern/
+│   ├── init/
+│   ├── mm/
+│   ├── trap/
+│   └── ...
+├── user/
+├── test/
+├── Makefile
+└── README.md
+```
 
-<h2 align="center">System Architecture</h2>
-<div align="center">
-  <img width="250" style="border: 10px solid #000000" alt="OS Flowchart" src="https://github.com/user-attachments/assets/bed9d458-3156-4f4b-8a75-73fd950c6aba" />
-</div>
+---
 
+# Building & Running
 
+## Clone the repository
 
-<h2>How to run</h2>
-
-clone the repository :
-
-<pre>
-<code>
+```bash
 git clone https://github.com/ZAsabiha/Advanced_Memory_Allocation_Os.git
-cd &lt;project-folder&gt;
-</code>
-</pre>
+cd Advanced_Memory_Allocation_Os
+```
 
-open in vscode/terminal in a virtual machine. then run these commands:
+## Build and run
 
-<pre>
-<code>
+Inside the configured **mCertiKOS Virtual Machine**, execute:
+
+```bash
 make clean
 make TEST=1
-</code>
-</pre>
+```
 
-This will:
-<ul>
-  <li>Compile the kernel</li>
-  <li>Launch the OS using QEMU</li>
-  <li>Enable the test cases</li>
-</ul>
+The commands will:
 
-<h2>Team Members</h2>
-
-<table border="1" cellspacing="0" cellpadding="10">
-  <tr>
-    <th>Team Member</th>
-    <th>Contribution</th>
-  </tr>
-
-  <tr>
-    <td>Israt Risha Ivey</td>
-    <td>Superpage allocation in physical layer and page accessing from virtual address</td>
-  </tr>
-
-  <tr>
-    <td>Ramisa Anan Rahman</td>
-    <td>brk syscall and heap management</td>
-  </tr>
-
-  <tr>
-    <td>Ridika Naznin</td>
-    <td>Page alignment and user process space allocation</td>
-  </tr>
-
-  <tr>
-    <td>Zannatul Adon Sabiha</td>
-    <td>Free list, buddy allocation system, page allocation and deallocation in physical layer virtual layer</td>
-  </tr>
-
-  <tr>
-    <td>Jarin Subha Sneha</td>
-    <td>Superpage allocation in physical layer, TLB monitoring</td>
-  </tr>
-</table>
+- Build the kernel
+- Generate the bootable disk image
+- Launch the operating system using **QEMU**
+- Execute the automated memory allocation test suite
 
 
+# Test Coverage
 
+The project includes automated tests for:
+
+- Physical Memory Initialization
+- Buddy Allocator
+- Contiguous Memory Allocation
+- Superpage Allocation & Deallocation
+- Memory Zone Management
+- Allocation Table (AT)
+- Container Memory Quotas
+- Virtual Memory Mapping
+- Dynamic Heap (`brk()`)
+- MPT Layer Integration
+
+# Future Improvements
+
+- NUMA-aware allocation
+- Transparent Huge Pages
+- Memory compaction
+- Slab allocator integration
+- Advanced page replacement algorithms
+
+
+# Acknowledgements
+
+This project was developed by extending the **mCertiKOS** educational operating system as part of an Operating Systems coursework focusing on advanced memory management techniques.
 
 
