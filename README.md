@@ -28,6 +28,9 @@ The implementation focuses on reducing memory fragmentation, improving allocatio
 
 # Key Concepts
 
+> <img width="400" align="right" src="https://github.com/user-attachments/assets/95b62a56-f2e8-44a6-9695-3dca0072ff00" />
+
+
 | # | Concept |
 |---|---------|
 | 1 | Paging & Virtual Memory |
