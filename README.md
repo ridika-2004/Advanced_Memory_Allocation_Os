@@ -1,6 +1,6 @@
 <div align="center">
 
-# Advanced Memory Allocation System
+# Kernel Memory Allocator for mCertiKOS
 
 **An extension of the mCertiKOS operating system implementing buddy allocation, contiguous memory allocation, 4MB superpages, and dynamic heap management for efficient memory utilization.**
 
